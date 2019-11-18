@@ -23,9 +23,17 @@ export default new Vuex.Store({
 
   actions: {
     GET_SCHEDULE: async (context) => {
-        const group = { "group" : "ikbo-13-17" };
-        const schedule = await api.getSchedule(group);
-        if (schedule.data.success) context.commit('SET_SCHEDULE', schedule.data);
+      const group = { "group" : "ikbo-13-17" };
+      const schedule = await api.getSchedule(group);
+      if (schedule.data.success) {
+        schedule.data.response.schedule.days.map((day) => {
+          day.map((lesson) => {
+            if (!lesson.odd.name) lesson.odd.name = "—";
+            if (!lesson.even.name) lesson.even.name = "—";
+          })
+        });
+        context.commit('SET_SCHEDULE', schedule.data.response.schedule.days);
+      }
     },
   },
 });

@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
 });
 
 const scheduleApi = {
-    getSchedule: async (groupData) => { 
+    getSchedule: async (groupData) => {
         return await axiosInstance.post('/schedule/get', groupData);
     }
 };
