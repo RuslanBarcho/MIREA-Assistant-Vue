@@ -22,7 +22,7 @@
       </v-row>
   </v-container>
   <v-container class="fill-height" fluid v-else>
-    <v-row align="top" justify="center">
+    <v-row justify="center">
       <v-progress-circular :size="50" color="primary" indeterminate/>
     </v-row>
   </v-container>

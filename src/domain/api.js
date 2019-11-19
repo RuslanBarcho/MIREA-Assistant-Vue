@@ -7,7 +7,10 @@ const axiosInstance = axios.create({
 const scheduleApi = {
     getSchedule: async (groupData) => {
         return await axiosInstance.post('/schedule/get', groupData);
-    }
+    },
+    getGroups: async () => {
+        return await axiosInstance.post('/group/get/all');
+    },
 };
 
 export const api = {

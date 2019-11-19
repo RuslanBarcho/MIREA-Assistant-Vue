@@ -1,23 +1,31 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import {api} from '@/domain/api';
+import {translit} from '@/domain/translit';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     schedule: null,
+    groups: null,
   },
 
   getters: {
     SCHEDULE: state => {
         return state.schedule;
     },
+    GROUPS: state => {
+        return state.groups;
+    },
   },
 
   mutations: {
     SET_SCHEDULE: (state, payload) => {
         state.schedule = payload;
+    },
+    SET_GROUPS: (state, payload) => {
+        state.groups = payload;
     },
   },
 
@@ -33,6 +41,16 @@ export default new Vuex.Store({
           })
         });
         context.commit('SET_SCHEDULE', schedule.data.response.schedule.days);
+      }
+    },
+    GET_GROUPS: async (context) => {
+      const groups = await api.getGroups();
+      if (groups.data.success) {
+        let names = [];
+        groups.data.response.groups.map((group) => {
+          names.push(translit.translit(group.group, -5).toUpperCase());
+        });
+        context.commit('SET_GROUPS', names);
       }
     },
   },
