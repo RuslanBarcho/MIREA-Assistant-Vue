@@ -5,6 +5,14 @@ import {translit} from '@/domain/translit';
 
 Vue.use(Vuex);
 
+const getGroup = () => {
+  const data = { "group" : "ikbo-13-17" };
+  if (localStorage.getItem('group')) {
+    data.group = translit.translit(localStorage.getItem('group'), 5).toLowerCase();
+  }
+  return data;
+}
+
 export default new Vuex.Store({
   state: {
     schedule: null,
@@ -31,8 +39,7 @@ export default new Vuex.Store({
 
   actions: {
     GET_SCHEDULE: async (context) => {
-      const group = { "group" : "ikbo-13-17" };
-      const schedule = await api.getSchedule(group);
+      const schedule = await api.getSchedule(getGroup());
       if (schedule.data.success) {
         schedule.data.response.schedule.days.map((day) => {
           day.map((lesson) => {

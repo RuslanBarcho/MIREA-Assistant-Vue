@@ -30,7 +30,7 @@
       clipped-left
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Mirea Assistant</v-toolbar-title>
+      <v-toolbar-title>Mirea Assistant β</v-toolbar-title>
     </v-app-bar>
 
     <v-content>
