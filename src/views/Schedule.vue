@@ -1,6 +1,6 @@
 <template>
   <v-container fluid v-if="scheduleList">
-    <v-tabs>
+    <v-tabs class="elevation-2">
       <v-tab @click="changeWeek(0)">Четная</v-tab>
       <v-tab @click="changeWeek(1)">Нечетная</v-tab>
     </v-tabs>
