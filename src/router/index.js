@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import VueYandexMetrika from 'vue-yandex-metrika';
 
 const startRouteGuard = async (to, from, next) => {
     const group = localStorage.getItem('group');
@@ -38,6 +39,12 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
     startRouteGuard(to, from, next);
-})
+});
+
+Vue.use(VueYandexMetrika, {
+    id: 56308720,
+    router: router,
+    env: process.env.NODE_ENV
+});
 
 export default router;

@@ -9,6 +9,7 @@
           :menu-props="menu"
           :items="groupList"
           :loading="groupList === null"
+          :disabled="groupList === null"
           no-data-text="Ничего не найдено"
           filled rounded
           v-model="group"/>
