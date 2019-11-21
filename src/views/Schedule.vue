@@ -13,7 +13,7 @@
                 <v-list-item class="list-group-item" v-for="(lesson, i) in day" v-bind:key="i">
                   <v-list-item-content>{{ getLesson(lesson).name }}</v-list-item-content>
                   <div v-if="getLesson(lesson).room">
-                    <v-chip class="ms-2" color="black" text-color="white">{{ getLesson(lesson).room }}</v-chip>
+                    <v-chip small class="ms-2 px-2" color="black" text-color="white">{{ getLesson(lesson).room }}</v-chip>
                   </div>
                 </v-list-item>
               </v-list>
@@ -52,7 +52,7 @@ module.exports = {
     scheduleList() {
       let schedule = this.$store.getters.SCHEDULE;
       return schedule;
-  },
-}
+    },
+  }
 }
 </script>
