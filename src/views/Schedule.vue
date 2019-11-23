@@ -1,8 +1,8 @@
 <template>
   <v-container fluid v-if="scheduleList">
-    <v-tabs class="elevation-2">
-      <v-tab @click="changeWeek(0)">Четная</v-tab>
-      <v-tab @click="changeWeek(1)">Нечетная</v-tab>
+    <v-tabs class="elevation-2" v-model="week">
+      <v-tab>Четная</v-tab>
+      <v-tab>Нечетная</v-tab>
     </v-tabs>
         <v-row>
           <v-col v-for="(day, i) in scheduleList" :key="i" cols="12" sm="6" md="4" lg="3">
@@ -29,10 +29,16 @@
 </template>
 
 <script>
-module.exports = {
+
+Date.prototype.getWeek = function() {
+  let onejan = new Date(this.getFullYear(), 0, 1);
+  return Math.ceil((((this - onejan) / 86400000) + onejan.getDay() + 1) / 7);
+}
+
+export default {
   data: function () {
     return {
-      week: 0,
+      week: ((new Date('2019-11-23')).getWeek() % 2),
       days: ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"],
     }
   },
@@ -43,7 +49,7 @@ module.exports = {
     getLesson: function(lessons) {
       if (this.week) return lessons.odd;
       else return lessons.even;
-    }
+    },
   },
   mounted() {
     this.$store.dispatch('GET_SCHEDULE');

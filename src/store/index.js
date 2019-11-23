@@ -6,9 +6,7 @@ import groups from './groups';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    groups: null,
-  },
+  state: {},
   getters: {},
   mutations: {},
   actions: {},
