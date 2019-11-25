@@ -38,7 +38,7 @@ Date.prototype.getWeek = function() {
 export default {
   data: function () {
     return {
-      week: ((new Date('2019-11-23')).getWeek() % 2),
+      week: (((new Date()).getWeek() + 1) % 2),
       days: ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"],
     }
   },
